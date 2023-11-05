@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="pro.css">
+    <script src="pro.js">
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    
+    const aadharNumber = document.getElementById("aadharNumber").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+
+    // Replace with actual logic to check user credentials in the database
+    // For a basic example, you can hardcode a valid Aadhar and phone number.
+    const validAadhar = "123456789012"; 
+    const validPhoneNumber = "1234567890";
+    
+    if (aadharNumber === validAadhar && phoneNumber === validPhoneNumber) {
+        // Redirect to the main voting page or do further processing
+        window.location.href = "main_voting_page.html";
+    } else {
+        document.getElementById("errorMessage").textContent = "Incorrect credentials. Please try again.";
+    }
+});
+function registerUser() {
+    const username = document.getElementById("username").value;
+    const phone = document.getElementById("phone").value;
+    const dob = document.getElementById("dob").value;
+    const gender = document.getElementById("gender").value;
+    const aadhar = document.getElementById("aadhar").value;
+    const govtId = document.getElementById("govtId").value;
+    const region = document.getElementById("region").value;
+    const photoFile = document.getElementById("photo").files[0];
+    const signatureFile = document.getElementById("signature").files[0];
+
+    // Check age (>= 18) based on DOB
+    const today = new Date();
+    const dobDate = new Date(dob);
+    const age = today.getFullYear() - dobDate.getFullYear();
+    if (today.getMonth() < dobDate.getMonth() || (today.getMonth() === dobDate.getMonth() && today.getDate() < dobDate.getDate())) {
+        age--;
+    }
+
+    if (age < 18) {
+        alert("You are not eligible to vote.");
+        return;
+    }
+
+    // Send the form data to the server (implementation not included here).
+    // You would typically use AJAX or fetch to send data to a server-side script for database insertion.
+
+    // Redirect to login page after registration
+    window.location.href = "login.html";
+}
+  // Simulated party banner data
+const partyBanners = [
+    'party1.jpg',
+    'party2.jpg',
+    'party3.jpg',
+    'party4.jpg',
+];
+
+// Function to create and start the slideshow
+function startSlideshow() {
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    partyBanners.forEach(banner => {
+        const slide = document.createElement('div');
+        slide.classList.add('slide');
+        slide.innerHTML = `<img src="${banner}" alt="Party Banner">`;
+        slideshowContainer.appendChild(slide);
+    });
+
+    let slideIndex = 0;
+
+    function showSlides() {
+        const slides = document.querySelectorAll('.slide');
+
+        slides.forEach(slide => slide.style.display = 'none');
+
+        slideIndex++;
+
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = 'block';
+        setTimeout(showSlides, 3000); // Change slide every 3 seconds
+    }
+
+    showSlides();
+}
+
+// Handle "Vote Now" button click
+document.getElementById('voteNowButton').addEventListener('click', function() {
+    // Open the voting page in a new window or tab (You'd link this to your voting page)
+    window.open('voting_page.html', '_blank');
+});
+
+// Start the slideshow when the page loads
+startSlideshow();
+document.addEventListener("DOMContentLoaded", function () {
+    const politicianResult = document.getElementById("politician-result");
+    const partyRadios = document.querySelectorAll('input[name="party"]');
+    const submitButton = document.getElementById("submit");
+
+    // Handle radio button change event
+    partyRadios.forEach((radio) => {
+        radio.addEventListener("change", function () {
+            if (radio.checked) {
+                const selectedParty = radio.value;
+                // You can add more logic to map parties to politicians
+                let politician;
+                switch (selectedParty) {
+                    case "TDP":
+                        politician = "Ramesh Reddy";
+                        break;
+                    case "YSRCP":
+                        politician = "Suresh Reddy";
+                        break;
+                    case "BJP":
+                        politician = "Venkatarao";
+                        break;
+                    default:
+                        politician = "Unknown";
+                        break;
+                }
+                politicianResult.textContent = `Selected Politician: ${selectedParty} - ${politician}`;
+            }
+        });
+    });
+    const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+
+const app = express();
+app.use(bodyParser.json());
+
+// Database configuration
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'your_db_user',
+    password: 'your_db_password',
+    database: 'your_database',
+});
+
+// API endpoints for user registration, login, voting, and timer
+// Implement user authentication, voting logic, and timer here
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
+
+
+    // Handle submit button click event (you can customize this)
+    submitButton.addEventListener("click", function () {
+        // Handle submit logic here
+    });
+});
+
+    </script>
+</head>
+<body>
+    <div id="sectionabc">
+        <div class="parties">
+            <div >
+              <h1> Welocome to INDIAN-based E-Voting System</h1>
+                <!-- Display different parties' manifestos, objectives, and promotional videos -->
+                <!-- Use HTML, CSS, and JS to create party cards with details and videos -->
+                <button class="btn ban btn-warning"  onclick="display('sectionLogin')"> signup</button>
+                <button class="btn ban btn-warning"  onclick="display('sectionQwerty')"> login</button>
+            </div>
+        </div>
+    
+    </div>
+    <div id="sectionLogin">
+        <div class="d-flex flex-column justify-content-end container">
+            <h1>Registration</h1>
+            <form class="shadow login-form" id="registrationForm" enctype="multipart/form-data">
+                <input type="text" id="name" placeholder=" Enter Name" required>
+                <input type="text" id="phone" placeholder="Mobile Number" required>
+                <input type="date" id="dob" placeholder="Date of Birth" required>
+                <input type="text" id="aadhar" placeholder="Aadhar Number" required>
+                
+                  <label for="region">Current Region:</label>
+                  <input type="text" id="region" name="region" required><br>
+            
+                  <label for="photo">Upload User Photo:</label>
+                  <input type="file" id="photo" name="photo" accept="image/*" required><br>
+            
+                  <label for="signature">Upload Signature:</label>
+                  <input type="file" id="signature" name="signature" accept="image/*" required><br>
+                  <label for="gender">Gender:</label>
+                  <select id="gender" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  </select><br>
+                  <input type="file" id="signature" accept="image/*" required>
+                    <button type="submit" class="d-flex flex-column justify-content-end ban1" >Register</button>
+                <!-- Other details and file upload option for photo & signature -->
+                
+            </form>
+        </div>
+    </div> 
+    <div id="sectionQwerty">
+        <div class=" shadow container">
+            <form id="loginForm" class="login-form">
+                <h2>Login to E-Voting System</h2>
+                <label for="aadharNumber">Aadhar Number:</label>
+                <input type="text" id="aadharNumber" name="aadharNumber"  placeholder="AadharNumber">
+                
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Mobile Number" required>
+                
+                <button type="submit" class="btn btn-warning ban" onclick="display('sectionMain')">Login</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </div>
+    <div id="sectionMain">
+      <div class="party-description">
+        <h2>Political Parties</h2>
+        <p>
+            Here you can find information about various political parties, their symbols, and voting procedures.
+        </p>
+      </div>
+        <div class=" d-flex flex-row box">
+           <div>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.r9jDNbmISdiAVrlRcwX4QgHaH4&pid=Api&P=0&h=180" class="tdp"/>
+              <h1> Telugu Desam Party </h1>
+           </div> 
+           <div>
+            <p> 
+              <h3>TDP is a prominent political party in the state of Andhra Pradesh, India. It was founded by Nandamuri Taraka Rama Rao (NTR) in 1982. The TDP has been a major player in Andhra Pradesh politics and has had several stints in power in the state.</h3><br/>
+                      
+              <h4>Key points related to TDP in AP:</h4><br/>
+                      
+             <h5> Historical Significance:</h5>The TDP has been a significant political force in Andhra Pradesh, often competing with other major parties, including the Indian National Congress and the Yuvajana Sramika Rythu Congress Party (YSRCP).<br/>
+                      
+              <h5>Political Ideology:</h5> The TDP has historically identified itself with center-right and pro-business political ideology, advocating for economic development and reforms in the state.<br/>
+                      
+              <h5>Leadership:</h5> The party has been led by various prominent leaders, including Nandamuri Taraka Rama Rao (NTR), Nara Chandrababu Naidu, and others.<br/>
+                      
+              <h5>Election Cycles:</h5> TDP has participated in state and national elections, contesting for legislative assembly and parliamentary seats.<br/>
+                      
+              <h5>Policy Initiatives:</h5> The party has focused on a range of policy issues, including agricultural and rural development, information technology, and infrastructure development.
+            </p>
+           </div>
+          
+              
+        </div>
+        <div class=" d-flex flex-row box"> 
+            
+          <div>
+            <img src="https://www.electwise.in/media/images/news/2019/08/06/YSR_Congress__Party_-_YSRCP.png" class="tdp"/>
+            <h1> Yuvajana Sramika Rythu Congress <br/> Party </h1>
+          </div>
+          <div>
+            <p>
+              <h3>The Yuvajana Sramika Rythu Congress Party (YSRCP) is a prominent political party in the Indian state of Andhra Pradesh. Here is some information about YSRCP:</h3><br/>
+  
+              <h4>Formation and Leadership:</h4><br/>
+  
+              The YSRCP was founded in 2011 by Yeduguri Sandinti Jaganmohan Reddy, commonly known as Jagan Reddy. Jagan Reddy is the son of former Andhra Pradesh Chief Minister Y.S. Rajasekhara Reddy (popularly known as YSR), who was a prominent figure in Andhra Pradesh politics.<br/>
+              <h5>Political Ideology:</h5>
+  
+              The YSRCP is often described as a center-left political party and has been known for its focus on social welfare programs and pro-poor policies.<br/>
+              <h5>Electoral Performance:</h5>
+  
+              The YSRCP has been a significant player in Andhra Pradesh politics and has contested elections for both state legislative assembly seats and parliamentary constituencies.<br/>
+    
+              <h5>Amma Vodi:</h5> A program that provides financial assistance to mothers to support the education of their children.<br/>
+              <h5>Rythu Bharosa:</h5> A scheme aimed at providing financial support to farmers.<br/>
+              <h5>YSR Arogyasri:</h5> A healthcare program that offers free medical services to economically disadvantaged people.<br/>
+              <h5>Jagananna Vidya Deevena:</h5> A scheme to provide financial assistance to students pursuing higher education.<br/>
+            </p>
+          </div>
+              
+        </div>
+     
+      
+        <div class=" d-flex flex-row box">
+            
+          <div>
+            <img src="https://tse2.mm.bing.net/th?id=OIP.BZuMfgnMDlCLqtUZaYH_DgAAAA&pid=Api&P=0&h=180" class="tdp"/>
+            <h1> Bharatiya Janata Party </h1>
+          </div>
+          <div>
+            <p>
+              <h3>The Bharatiya Janata Party (BJP) is one of the prominent political parties in India. Here is some general information about the BJP:</h3><br/>
+  
+              <h5>Introduction:</h5>
+              The Bharatiya Janata Party (BJP) is one of India's major political parties, known for its emphasis on Hindu nationalism and right-leaning ideologies. It was founded in 1980 and has since become a key player in Indian politics.<br/>
+                    
+              <h5>Ideology:</h5>
+              The BJP's core ideology is based on Hindutva, a cultural and nationalist ideology that seeks to emphasize the cultural and historical significance of India's Hindu identity. The party also stands for economic liberalization and good governance.<br/>
+                    
+              <h5>Founders:</h5>
+              The BJP was formed in 1980 as the successor to the Bharatiya Jana Sangh. Some of its prominent founders and leaders included Atal Bihari Vajpayee, L.K. Advani, and Murli Manohar Joshi.<br/>
+                    
+             <h5> Growth:</h5>
+              The BJP has grown from being a marginal player in Indian politics to becoming the dominant party in various states and at the national level. It has won several general elections and formed the government at the center multiple times.<br/>
+                    
+             <h5> Key Leaders:</h5>
+              The party has been led by prominent figures, including Atal Bihari Vajpayee, who served as the Prime Minister of India, and Narendra Modi, who has held the position since 2014. Narendra Modi is known for his charismatic leadership and has a significant influence on the party's policies.<br/>
+                    
+              <h5>Electoral Performance:</h5>
+              The BJP's electoral successes include winning a clear majority in the 2014 and 2019 general elections, forming a stable government. The party has also won numerous state elections across India.<br/>
+            </p>
+          </div>
+        </div>
+        <button id="voteNowButton" onclick="display('sectionVote')">Vote Now</button>
+      </div>
+        
+      <script src="script.js"></script>
+    </div>
+    <div id="sectionVote">
+      <div class="container">
+        <div class="party-list">
+            <h2>Please Vote</h2>
+            <ul>
+                <li class="d-flex flex-row">
+                  TDP - Nara Chandrababu Naidu
+                    <label class="radio-tdp">
+                        <input type="radio" name="party" value="TDP">
+                        
+                    </label>
+                </li>
+                <li class="d-flex flex-row">
+                  YSRCP - YSR Jagan Mohan Reddy
+                    <label class="d-flex flex-column justify-content-center radio-ysrcp">
+                        <input type="radio" name="party" value="YSRCP">
+                        
+                    </label>
+                </li>
+                <li class="d-flex flex-row">
+                  BJP -  D Purandeswari
+                    <label class="radio-bjp">
+                        <input type="radio" name="party" value="BJP">
+                        
+                    </label>
+                    
+                </li>
+                <!-- Add more parties as needed -->
+            </ul>
+        </div>
+        
+    </div>
+    <div class="result">
+      
+  </div>
+    <div class="submit-button">
+        <div class="submit-button">
+            <button id="submit" onclick="display('sectionabc')">Submit</button>
+        </div>
+    </div>
+
+    </div>
+
+    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+</body>
+</html>

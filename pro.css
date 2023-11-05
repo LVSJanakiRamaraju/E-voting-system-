@@ -1,0 +1,204 @@
+.container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.parties{
+    text-align: center;
+    padding-top: 20vh;
+    background-image: url("https://res.cloudinary.com/dekrcobk2/image/upload/v1699031926/e-votingimagefor_lyndwz.jpg");
+    height: 100vh;
+    background-size: cover;
+    font-style: italic;
+    color: indigo;
+}
+
+.login-form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+.ban{
+    background-color: #007BFF;
+    color: #fff;
+    margin-top: 45vh;
+    align-items: center;   
+}
+.ban1{
+    margin-left: 41%;
+    margin-top: 5%;
+    background-color: #007BFF;
+    color: #fff;
+    margin-bottom: 5%;
+}
+.tdp-img{
+    height: 70vh;
+    width: 80vw;
+
+}
+.tdp{
+    height: 20vh;
+    width: 20vw;
+}
+
+/* Basic styling, adjust as needed */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#userPhoto {
+    max-width: 100px;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.slideshow-container {
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.party-description {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+button#voteNowButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.box{
+    border-style: solid;
+    border-color: #007BFF;
+    border-radius: 8px;
+    margin: 10px;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.party-list {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.party-list h2 {
+    margin-bottom: 10px;
+}
+
+.result {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.result h2 {
+    margin-bottom: 10px;
+}
+
+.submit-button {
+    text-align: center;
+    padding: 20px;
+}
+
+button {
+    background-color: #0074cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+.radio-tdp{
+    align-items: end;
+    margin-left: 74px
+}
+.radio-ysrcp{
+    align-items: end;
+    margin-left: 58px
+}
+.radio-bjp{
+    align-items: end;
+    margin-left: 144px
+}
